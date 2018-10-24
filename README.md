@@ -5,6 +5,8 @@ HappyPop's Scripts
 # 使用插件 
 使用了 **DOTween** 和 音乐游戏插件**Koreographer**。 
 
+
+
 [**Koreographer**]https://assetstore.unity.com/packages/tools/audio/koreographer-54639
 
 同时引用了Unify Community Wiki的 FSM （有限状态机） 。
