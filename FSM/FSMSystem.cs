@@ -53,7 +53,8 @@ public enum Transition
 {
 	NullTransition = 0, // Use this transition to represent a non-existing transition in your system
 	StartButtonClick,
-	PauseButtonClick
+	PauseButtonClick,
+	RebButtonClick
 }
 
 /// <summary>
@@ -66,7 +67,8 @@ public enum StateID
 	Menu,
 	Play,
 	Pause,
-	GameOver
+	GameOver,
+	Replay
 }
 
 /// <summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using SonicBloom.Koreo;
 public class Block : MonoBehaviour
 {
 	[Header("Block图层")]
@@ -19,6 +20,7 @@ public class Block : MonoBehaviour
 	public Color MyColor;
 	private AudioSource MyAudio;
 	public bool FamilyAru;
+	private ParticleSystem Point;
 	//public Transform CheckPos;
 	//public float CheckRange;
 
@@ -45,6 +47,7 @@ public class Block : MonoBehaviour
 	public void Kesu()
 	{
 		nownum++;
+
 	}
 	//bool familyAru
 	//{
@@ -67,7 +70,7 @@ public class Block : MonoBehaviour
 	//	}
 	//}
 
-
+	public string eventID;
 	public void Start()
 	{
 		GM = GameObject.Find("Ctrl").GetComponent<GameManager>();
@@ -77,7 +80,16 @@ public class Block : MonoBehaviour
 		ChildCol[1] = transform.Find("Tig_D").gameObject.GetComponent<ChildCol>();
 		ChildCol[2] = transform.Find("Tig_L").gameObject.GetComponent<ChildCol>();
 		ChildCol[3] = transform.Find("Tig_R").gameObject.GetComponent<ChildCol>();
+		Point = this.gameObject.transform.Find("Point").GetComponent<ParticleSystem>();
+		Koreographer.Instance.RegisterForEvents(eventID, CanBye);
 
+	}
+	public void CanBye(KoreographyEvent koreographyEvent)
+	{
+		if (num >= 2)
+		{
+			GoodBye();
+		}
 	}
 	public void FixedUpdate()
 	{
@@ -124,6 +136,7 @@ public class Block : MonoBehaviour
 		transform.Find("Tig_D").gameObject.GetComponent<ChildCol>().bye();
 		transform.Find("Tig_L").gameObject.GetComponent<ChildCol>().bye();
 		transform.Find("Tig_R").gameObject.GetComponent<ChildCol>().bye();
+
 		this.gameObject.transform.DOPunchPosition(new Vector3(0, 0, -0.3f), 0.5f); // 来回冲压
 		this.gameObject.GetComponent<SpriteRenderer>().DOFade(0, 0.5f)  //透明
 
